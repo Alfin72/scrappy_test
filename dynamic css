@@ -1,0 +1,21 @@
+import scrapy
+
+
+class zooplapider(scrapy.Spider):
+    name = "tezoo"
+    start_urls= [
+            #'u r site url'
+        ]
+
+    def parse(self, response):
+        #long_des = response.xpath("//div[@class='STw8udCxUaBUMfOOZu0iL kJR0bMoi8VLouNkBRKGww']//div[1]").extract()
+        #response.xpath('.//div[@class="sect "]//p//text()[normalize-space()]').extract()
+        #long_des= response.css('div[class^="ST"]').extract()
+        #long_des = response.css('div[class^="ST"]').extract()
+        #long_des = response.css('div[class^="ST"] div').extract()
+        long_des = response.css('div[class^="ST"] div::text').extract()
+
+        title = response.css('title::text').extract()
+        yield {"response": long_des,
+               "title": title,
+               }
